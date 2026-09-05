@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -258,9 +256,10 @@
   </div>
 
   <div class="card">
-    <audio controls loop style="width: 100%; margin-top: 15px;">
-  <source src="/LearnGit/kavaya.mp3" type="audio/mpeg">
-</audio>
+    <audio id="teacherSong" controls loop style="width: 100%; margin-top: 15px;">
+      <source src="kavaya.mp3" type="audio/mpeg">
+    </audio>
+
     <h2>Kavya Mam ❤️</h2>
 
     <p>
@@ -344,18 +343,6 @@
         flower.remove();
       }, 6000);
     }, 1200);
-    function playMusic() {
-  var song = document.getElementById("teacherSong");
-  if (song.paused) {
-    song.play().then(() => {
-      console.log("Audio started");
-    }).catch(error => {
-      console.log("Error:", error);
-    });
-  } else {
-    song.pause();
-  }
-}
   </script>
 
 </body>
