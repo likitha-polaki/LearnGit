@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,7 +168,7 @@
       justify-content: center;
       align-items: center;
       z-index: 2000;
-      animation: welcomeOut 1s ease 3s forwards;
+      animation: welcomeOut 0.8s ease 3s forwards;
     }
 
     .welcome-icon {
@@ -191,7 +190,7 @@
 
     @keyframes cardGlow {
       0%, 100% { box-shadow: 0 20px 50px rgba(0,0,0,0.25), inset 0 0 0 2px #d4af37; }
-      50% { box-shadow: 0 20px 55px rgba(212,175,55,0.35), inset 0 0 0 3px #d4af37; }
+      50% { shadow: 0 20px 55px rgba(212,175,55,0.35), inset 0 0 0 3px #d4af37; }
     }
 
     @keyframes sparkleGlow {
@@ -224,7 +223,7 @@
 
     @keyframes welcomeOut {
       0% { opacity: 1; visibility: visible; }
-      100% { opacity: 0; visibility: hidden; pointer-events: none; }
+      100% { opacity: 0; visibility: hidden; pointer-events: none; display: none; }
     }
 
     @keyframes messagePop {
@@ -248,7 +247,7 @@
 
 <body>
 
-  <button class="musicBtn" onclick="playMusic()">
+  <button class="musicBtn" id="btnMusic" onclick="playMusic()">
     🎵 Play Music
   </button>
 
@@ -259,7 +258,7 @@
   </div>
 
   <div class="card">
-    <audio id="teacherSong" loop>
+    <audio id="teacherSong" loop preload="auto">
       <source src="kavaya.mp3" type="audio/mpeg">
     </audio>
 
@@ -289,9 +288,18 @@
   <script>
     function playMusic() {
       const song = document.getElementById("teacherSong");
-      song.play().catch(error => {
-        console.log("Audio play failed: ", error);
-      });
+      const btn = document.getElementById("btnMusic");
+
+      if (song.paused) {
+        song.play().then(() => {
+          btn.innerHTML = "⏸️ Pause Music";
+        }).catch(error => {
+          console.log("Audio play error: ", error);
+        });
+      } else {
+        song.pause();
+        btn.innerHTML = "🎵 Play Music";
+      }
     }
 
     function showMessage() {
