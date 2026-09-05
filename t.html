@@ -251,16 +251,207 @@
     padding: 12px 22px;
   }
 }
+#welcome {
+  position: fixed;
+  inset: 0;
+  background: #fff8e7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: welcomeOut 1s ease 3s forwards;
+}
+
+.welcome-icon {
+  font-size: 65px;
+  animation: welcomePop 1s ease;
+}
+
+#welcome h2 {
+  margin-top: 20px;
+  color: #d4af37;
+  font-size: 28px;
+}
+
+#welcome p {
+  color: #333;
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+@keyframes welcomePop {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes welcomeOut {
+  0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+/* Golden sparkle */
+.card::after {
+  content: "✨ ✦ ✨";
+  position: absolute;
+  top: 110px;
+  left: 0;
+  width: 100%;
+  font-size: 22px;
+  letter-spacing: 35px;
+  opacity: 0.7;
+  animation: sparkleGlow 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkleGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+#message {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  background: #fff8e7;
+  border: 2px solid #d4af37;
+  border-radius: 20px;
+  color: #6b5720;
+  animation: messagePop 0.8s ease;
+}
+
+.message-title {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#message p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.message-end {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+@keyframes messagePop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}h2 {
+  animation: nameGlow 2s ease-in-out infinite;
+}
+
+@keyframes nameGlow {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 0px #d4af37;
+  }
+
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 15px #d4af37;
+  }
+}/* Premium Card Glow */
+.card {
+  animation: cardGlow 3s ease-in-out infinite;
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow:
+      0 20px 50px rgba(0,0,0,0.25),
+      inset 0 0 0 2px #d4af37;
+  }
+
+  50% {
+    box-shadow:
+      0 20px 55px rgba(212,175,55,0.35),
+      inset 0 0 0 3px #d4af37;
+  }
+}.floating-flower {
+  position: fixed;
+  bottom: -40px;
+  font-size: 24px;
+  pointer-events: none;
+  animation: flowerUp 6s linear forwards;
+  z-index: 10;
+}
+
+@keyframes flowerUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}.teacherPhoto {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #d4af37;
+  padding: 4px;
+  background: white;
+  box-shadow: 0 8px 25px rgba(200,170,50,0.30);
+  animation: photoGlow 2.5s ease-in-out infinite;
+}
+body {
+  background-image: url("madam-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body {
+  background-image: url("madam.jpg") !important;
+  background-size: 2000px 2000px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}.card {
+  background: rgba(255, 253, 248, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
   </style>
 </head>
 
-<body>
+<body
+<button class="musicBtn" onclick="playMusic()">
+  🎵 Play Music
+</button>
 
-  <div class="card">
+<div style="text-align: center;">
 
-    <div class="icon">🌸</div>
-
-    <h1>Happy <span>Teachers’ Day</span></h1>
+</div>
+    <div id="welcome">
+  <div class="welcome-icon">🌸</div>
+  <h2>For a Wonderful Teacher</h2>
+  <p>Kavya Mam ❤️</p>
+</div>
+<div class="card">
+    <audio id="teacherSong" loop>
+  <source src="C:\Users\Chaithu\farmer_ai\lib\Madam Sir Song Download - Telugu Dj Songs.mp3" type="audio/mpeg">
+</audio>
+    <h1>🌸Happy <span>Teachers’ Day</span></h1>
 
     <h2>Kavya Mam ❤️</h2>
 
@@ -275,7 +466,14 @@
     </button>
 
     <div id="message">
-      🌷 Thank you for being an amazing teacher! 🌷
+  <div class="message-title">💐 Dear Kavya Mam 💐</div>
+  <p>
+    Thank you for guiding us, inspiring us,
+    and always believing in us. ❤️
+  </p>
+  <div class="message-end">🌷 You are truly special! 🌷</div>
+
+
     </div>
 
   </div>
@@ -325,7 +523,25 @@ setInterval(() => {
 }, 700);
 
 
+function playMusic() {
+  const song = document.getElementById("teacherSong");
+  song.play();
+}setInterval(() => {
+  const flower = document.createElement("div");
+  flower.className = "floating-flower";
 
+  const flowers = ["🌸", "🌷", "🌼", "💐"];
+  flower.innerHTML =
+    flowers[Math.floor(Math.random() * flowers.length)];
+
+  flower.style.left = Math.random() * 100 + "vw";
+
+  document.body.appendChild(flower);
+
+  setTimeout(() => {
+    flower.remove();
+  }, 6000);
+}, 1200);
   </script>
 
 </body>
