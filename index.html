@@ -258,8 +258,8 @@
   </div>
 
   <div class="card">
-<audio id="teacherSong" controls loop style="width: 100%; margin-top: 15px;">
-  <source src="./kavaya.mp3" type="audio/mpeg">
+<audio id="teacherSong" style="display:none;" loop preload="auto">
+  <source src="kavaya.mp3" type="audio/mpeg">
 </audio>
     <h1>🌸 Happy <span>Teachers’ Day</span></h1>
     <h2>Kavya Mam ❤️</h2>
@@ -345,6 +345,18 @@
         flower.remove();
       }, 6000);
     }, 1200);
+    function playMusic() {
+  var song = document.getElementById("teacherSong");
+  if (song.paused) {
+    song.play().then(() => {
+      console.log("Audio started");
+    }).catch(error => {
+      console.log("Error:", error);
+    });
+  } else {
+    song.pause();
+  }
+}
   </script>
 
 </body>
